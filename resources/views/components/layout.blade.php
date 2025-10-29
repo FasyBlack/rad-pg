@@ -21,7 +21,7 @@
     {{-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png"> --}}
     <title>
-        Dashboard Admin
+        Dashboard Admin RAD-PG
     </title>
     <!--     Favicon     -->
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
@@ -34,24 +34,43 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
+  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+  
+  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.1.0') }}" rel="stylesheet" />
+    
+    <link id="pagestyle" href="{{ asset('assets/css/custom.css?v=2.1.1') }}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show ">
-    <div class="min-height-300 bg-dark position-absolute w-100"></div>
+    {{-- preload --}}
+    <div id="preloader">
+    <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+
+    <div class="min-height-250 bg-menu position-absolute w-100 "></div>
     @include('components.sidebar')
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        
+
         <!-- End Navbar -->
         @yield('content')
     </main>
-    
+
+    <!--   preload JS Files   -->
+    <script src="{{ asset('assets/js/preload.js') }}"></script>
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
@@ -149,6 +168,7 @@
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
+    
     </script>
     <!-- Github buttons -->
     <script async defer src="{{ asset('assets/js/buttons.js') }}"></script>

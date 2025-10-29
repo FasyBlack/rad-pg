@@ -5,7 +5,7 @@
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root,
+/* :root,
 [data-bs-theme=light] {
   --bs-blue: #63B3ED;
   --bs-indigo: #596CFF;
@@ -29,7 +29,7 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #5e72e4;
+  --bs-primary: #6b9071;
   --bs-secondary: #8392ab;
   --bs-success: #2dce89;
   --bs-info: #11cdef;
@@ -38,7 +38,7 @@
   --bs-light: #e9ecef;
   --bs-dark: #344767;
   --bs-white: #fff;
-  --bs-primary-rgb: 94, 114, 228;
+ --bs-primary-rgb: 107, 144, 113;
   --bs-secondary-rgb: 131, 146, 171;
   --bs-success-rgb: 45, 206, 137;
   --bs-info-rgb: 17, 205, 239;
@@ -82,7 +82,7 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #67748e;
   --bs-body-color-rgb: 103, 116, 142;
-  --bs-body-bg: #fff;
+  --bs-body-bg: #e8efde;
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
@@ -95,10 +95,10 @@
   --bs-tertiary-bg: #f8f9fa;
   --bs-tertiary-bg-rgb: 248, 249, 250;
   --bs-heading-color: #344767;
-  --bs-link-color: #5e72e4;
+  --bs-link-color: #6b9071;
   --bs-link-color-rgb: 94, 114, 228;
   --bs-link-decoration: none;
-  --bs-link-hover-color: rgb(35.2579787234, 61.375, 210.2420212766);
+  --bs-link-hover-color: #E3EED4;
   --bs-link-hover-color-rgb: 35, 61, 210;
   --bs-link-hover-decoration: none;
   --bs-code-color: #d63384;
@@ -126,7 +126,7 @@
   --bs-form-valid-border-color: #66d432;
   --bs-form-invalid-color: #fd5c70;
   --bs-form-invalid-border-color: #fd5c70;
-}
+} */
 
 [data-bs-theme=dark] {
   color-scheme: dark;
@@ -4877,6 +4877,9 @@ fieldset:disabled .btn {
   display: block;
 }
 
+
+/* sidebar */
+
 .navbar {
   --bs-navbar-padding-x: 1rem;
   --bs-navbar-padding-y: 0.5rem;
@@ -5372,6 +5375,10 @@ fieldset:disabled .btn {
 [data-bs-theme=dark] .navbar-toggler-icon {
   --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
+
+/* end sidebar */
+
+
 
 .card {
   --bs-card-spacer-y: 1rem;
