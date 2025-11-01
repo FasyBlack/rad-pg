@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('rencanakerja') ? 'active' : '' }}" href="../pages/billing.html"> <div
+            <a class="nav-link {{ Request::routeIs('rencanakerja') ? 'active' : '' }}" href="{{ route('rencanakerja') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
                 </div>
@@ -35,7 +35,7 @@
             </a>
         </li>
         <li class="nav-item">
-             <a class="nav-link {{ Request::routeIs('monev') ? 'active' : '' }}" href="../pages/virtual-reality.html"> <div
+             <a class="nav-link {{ Request::routeIs('monev') ? 'active' : '' }}" href="{{ route('monev') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-archive-2 text-dark text-sm opacity-10"></i>
                 </div>
@@ -43,7 +43,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('progres') ? 'active' : '' }}" href="../pages/rtl.html"> <div
+            <a class="nav-link {{ Request::routeIs('progres') ? 'active' : '' }}" href="{{ route('progres') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-image text-dark text-sm opacity-10"></i>
                 </div>
@@ -54,7 +54,7 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::routeIs('profile') ? 'active' : '' }}" href="#"> <div
+            <a class="nav-link {{ Request::routeIs('profile') ? 'active' : '' }}" href="{{ route('profile') }}"> <div
                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                 </div>

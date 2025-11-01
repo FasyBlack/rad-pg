@@ -36,38 +36,59 @@
     <!-- Nucleo Icons -->
     {{-- <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" /> --}}
-  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
-  
-  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-
-    <!-- CSS Files -->
-    <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.1.0') }}" rel="stylesheet" />
     
-    <link id="pagestyle" href="{{ asset('assets/css/custom.css?v=2.1.1') }}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2') }}" rel="stylesheet" />
+
 </head>
 
 <body class="g-sidenav-show ">
     {{-- preload --}}
     <div id="preloader">
-    <div class="dots-container">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+        <div class="dots-container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
-</div>
 
     <div class="min-height-250 bg-menu position-absolute w-100 "></div>
     @include('components.sidebar')
-    <main class="main-content position-relative border-radius-lg ">
-        <!-- Navbar -->
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+
+    <!-- Navbar -->
 
         <!-- End Navbar -->
         @yield('content')
+
+        <footer class="footer pt-3  ">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-12">
+                        <div class="copyright text-center text-sm text-muted text-lg-end">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
+                            made with <i class="fa fa-heart"></i> by
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
+                                Tim</a>
+                            for a better web.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
+
+
 
     <!--   preload JS Files   -->
     <script src="{{ asset('assets/js/preload.js') }}"></script>
@@ -168,7 +189,6 @@
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
-    
     </script>
     <!-- Github buttons -->
     <script async defer src="{{ asset('assets/js/buttons.js') }}"></script>
