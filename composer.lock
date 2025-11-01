@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "626b9e7ddd47fb7eff9aaa53cce0c9ad",
+    "content-hash": "f92b6d83a4d1c0184cf8afc644511809",
     "packages": [
         {
             "name": "brick/math",
@@ -3273,6 +3273,67 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.1"
             },
             "time": "2025-09-04T20:59:21+00:00"
+        },
+        {
+            "name": "renatomarinho/laravel-page-speed",
+            "version": "v4.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkius-labs/laravel-page-speed.git",
+                "reference": "9b43d6ab2f8ef3d170837385b568248aed0efce4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkius-labs/laravel-page-speed/zipball/9b43d6ab2f8ef3d170837385b568248aed0efce4",
+                "reference": "9b43d6ab2f8ef3d170837385b568248aed0efce4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.0 || ^11.0 || ^12.0",
+                "php": "^8.2 || ^8.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "orchestra/testbench": "^8.0 || ^9.0 || ^10.0",
+                "phpunit/phpunit": "^10.5 || ^11.0",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "VinkiusLabs\\LaravelPageSpeed\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "VinkiusLabs\\LaravelPageSpeed\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renato Marinho",
+                    "email": "renato.marinho@gitscrum.com"
+                }
+            ],
+            "description": "Laravel Page Speed",
+            "keywords": [
+                "html",
+                "laravel",
+                "minify",
+                "optimize",
+                "page speed"
+            ],
+            "support": {
+                "issues": "https://github.com/vinkius-labs/laravel-page-speed/issues",
+                "source": "https://github.com/vinkius-labs/laravel-page-speed/tree/v4.3.1"
+            },
+            "time": "2025-10-26T12:51:22+00:00"
         },
         {
             "name": "symfony/clock",
@@ -8235,5 +8296,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

@@ -47,11 +47,11 @@
     @include('components.sidebar')
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        
+
         <!-- End Navbar -->
         @yield('content')
     </main>
-    
+
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
@@ -155,6 +155,7 @@
 
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.1.0') }}"></script>
+
 </body>
 
 </html>
