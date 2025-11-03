@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_strategi')->references('id')->on('strategis')->onDelete('cascade');
             $table->foreignId('id_opd')->references('id')->on('opds')->onDelete('cascade');
-             $table->foreignId('id_renja')->references('id')->on('rencana_kerjas')->onDelete('cascade');
             $table->string('rencana_aksi');
             $table->longText('kegiatan');
             $table->longText('sub_kegiatan');

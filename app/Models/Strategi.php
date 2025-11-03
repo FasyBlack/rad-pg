@@ -10,6 +10,7 @@ class Strategi extends Model
     Use HasFactory;
     protected $table = 'strategis';
     protected $fillable = [
+        'program',
         'strategi',
         'keterangan',
     ];

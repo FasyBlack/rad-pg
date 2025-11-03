@@ -9,7 +9,7 @@ class Opd extends Model
 {
     Use HasFactory;
     protected $table = 'opds';
-    protected $fillable = ['nama', 'status'];
+    protected $fillable = ['opd', 'status'];
 
       public function rencanaAksi()
     {

@@ -14,7 +14,8 @@ class RencanaAksiController extends Controller
      */
     public function index()
     {
-        return view('admin.rencana_aksi.index');
+        $rencanaAksi = RencanaAksi::with(['strategi', 'opd'])->get();
+        return view('admin.rencanaAksi.index', compact('rencanaAksi'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RencanaAksiController extends Controller
     {
         $opd = Opd::all();
         $strategis = Strategi::all();
-        return view('admin.rencana_aksi.create', compact('strategis', 'opd'));
+        return view('admin.rencanaAksi.create', compact('strategis', 'opd'));
     }
 
     /**
@@ -42,11 +43,17 @@ class RencanaAksiController extends Controller
             'lokasi' => 'required|string',
             'volume' => 'required|string',
             'satuan' => 'required|string',
-            'anggaran' => 'required|string',
-            'sumberdana' => 'required|string',
+            'anggaran' => 'required|array',
+            'anggaran.*' => 'required|string',
+            'sumberdana' => 'required|array',
+            'sumberdana.*' => 'required|string',
             'tahun' => 'required|string',
             'keterangan' => 'nullable|string',
         ]);
+
+        // 4. Ubah array anggaran dan sumberdana menjadi string
+        $anggaranString = implode('; ', $validatedData['anggaran']);
+        $sumberdanaString = implode('; ', $validatedData['sumberdana']);
 
         RencanaAksi::create([
             'id_strategi' => $validatedData['id_strategi'],
@@ -58,13 +65,13 @@ class RencanaAksiController extends Controller
             'lokasi' => $validatedData['lokasi'],
             'volume' => $validatedData['volume'],
             'satuan' => $validatedData['satuan'],
-            'anggaran' => $validatedData['anggaran'],
-            'sumberdana' => $validatedData['sumberdana'],
+            'anggaran'      => $anggaranString,
+            'sumberdana'    => $sumberdanaString,
             'tahun' => $validatedData['tahun'],
             'keterangan' => $validatedData['keterangan'] ?? null,
         ]);
 
-        return redirect()->route('rencana_aksi')->with('success', 'Rencana Aksi created successfully.');
+        return redirect()->route('rencanaAksi')->with('success', 'Rencana Aksi created successfully.');
     }
 
     /**
@@ -83,7 +90,7 @@ class RencanaAksiController extends Controller
         $opd = Opd::all();
         $strategis = Strategi::all();
         $rencanaAksi = RencanaAksi::findOrFail($id);
-        return view('admin.rencana_aksi.edit', compact('rencanaAksi', 'strategis', 'opd'));
+        return view('admin.rencanaAksi.edit', compact('rencanaAksi', 'strategis', 'opd'));
     }
 
     /**
@@ -123,7 +130,7 @@ class RencanaAksiController extends Controller
             'keterangan' => $validatedData['keterangan'] ?? null,
         ]);
 
-        return redirect()->route('rencana_aksi')->with('success', 'Rencana Aksi updated successfully.');
+        return redirect()->route('rencanaAksi')->with('success', 'Rencana Aksi updated successfully.');
     }
 
     /**
@@ -133,6 +140,6 @@ class RencanaAksiController extends Controller
     {
         $rencanaAksi = RencanaAksi::findOrFail($id);
         $rencanaAksi->delete();
-        return redirect()->route('rencana_aksi.index')->with('success', 'Rencana Aksi deleted successfully.');
+        return redirect()->route('rencanaAksi.index')->with('success', 'Rencana Aksi deleted successfully.');
     }
 }

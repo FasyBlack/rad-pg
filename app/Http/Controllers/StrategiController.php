@@ -12,7 +12,8 @@ class StrategiController extends Controller
      */
     public function index()
     {
-        return view('admin.strategi.index');
+        $strategi = Strategi::all();
+        return view('admin.strategi.index', compact('strategi'));
     }
 
     /**
@@ -29,16 +30,19 @@ class StrategiController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
+            'program' => 'required',
             'strategi' => 'required|string|max:255',
             'keterangan' => 'required|string',
         ]);
 
         Strategi::create([
+            'program' => $validateData['program'],
             'strategi' => $validateData['strategi'],
             'keterangan' => $validateData['keterangan'],
         ]);
 
-        return redirect()->back()->with('success', 'Data strategi berhasil disimpan!');
+       return redirect()->route('strategi')->with('success', 'Data strategi berhasil disimpan!');
+
     }
 
     /**
@@ -63,6 +67,7 @@ class StrategiController extends Controller
     public function update(Request $request, string $id)
     {
         $validateData = $request->validate([
+            'e_program' => 'required',
             'e_strategi' => 'required|string|max:255',
             'e_keterangan' => 'required|string',
         ]);
@@ -70,11 +75,12 @@ class StrategiController extends Controller
         $strategi = Strategi::findOrFail($id);
 
         $strategi->update([
+            'program' => $validateData['e_program'],
             'strategi' => $validateData['e_strategi'],
             'keterangan' => $validateData['e_keterangan'],
         ]);
 
-        return redirect()->back()->with('success', 'Data strategi berhasil diperbarui!');
+        return redirect()->route('strategi')->with('success', 'Data strategi berhasil diperbarui!');
     }
 
     /**
@@ -84,6 +90,6 @@ class StrategiController extends Controller
     {
         Strategi::where('id', $id)->delete();
 
-        return redirect()->back()->with('success', 'Data strategi berhasil dihapus!');
+        return redirect()->route('strategi')->with('success', 'Data Berhasil Dihapus');
     }
 }

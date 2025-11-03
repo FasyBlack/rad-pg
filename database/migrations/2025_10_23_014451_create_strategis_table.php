@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('strategis', function (Blueprint $table) {
             $table->id();
+            $table->string('program');
             $table->string('strategi');
             $table->longText('keterangan')->nullable();
             $table->timestamps();

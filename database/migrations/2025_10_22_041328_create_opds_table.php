@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('opds', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('opd');
             $table->string('status');
             $table->timestamps();
         });
