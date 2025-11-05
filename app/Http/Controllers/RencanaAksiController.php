@@ -90,7 +90,10 @@ class RencanaAksiController extends Controller
         $opd = Opd::all();
         $strategis = Strategi::all();
         $rencanaAksi = RencanaAksi::findOrFail($id);
-        return view('admin.rencanaAksi.edit', compact('rencanaAksi', 'strategis', 'opd'));
+        // PECAH STRING MENJADI ARRAY SEBELUM DIKIRIM KE VIEW
+        $rencanaAksi->anggaran = explode('; ', $rencanaAksi->anggaran);
+        $rencanaAksi->sumberdana = explode('; ', $rencanaAksi->sumberdana);
+        return view('admin.rencanaAksi.update', compact('rencanaAksi', 'strategis', 'opd'));
     }
 
     /**
@@ -108,12 +111,17 @@ class RencanaAksiController extends Controller
             'lokasi' => 'required|string',
             'volume' => 'required|string',
             'satuan' => 'required|string',
-            'anggaran' => 'required|string',
-            'sumberdana' => 'required|string',
+            'anggaran'     => 'required|array',
+            'anggaran.*'   => 'required|string',
+            'sumberdana'   => 'required|array',
+            'sumberdana.*' => 'required|string',
             'tahun' => 'required|string',
             'keterangan' => 'nullable|string',
         ]);
         $rencanaAksi = RencanaAksi::findOrFail($id);
+        $anggaranString = implode('; ', $validatedData['anggaran']);
+        $sumberdanaString = implode('; ', $validatedData['sumberdana']);
+
         $rencanaAksi->update([
             'id_strategi' => $validatedData['id_strategi'],
             'id_opd' => $validatedData['id_opd'],
@@ -124,8 +132,8 @@ class RencanaAksiController extends Controller
             'lokasi' => $validatedData['lokasi'],
             'volume' => $validatedData['volume'],
             'satuan' => $validatedData['satuan'],
-            'anggaran' => $validatedData['anggaran'],
-            'sumberdana' => $validatedData['sumberdana'],
+            'anggaran'      => $anggaranString,
+            'sumberdana'    => $sumberdanaString,
             'tahun' => $validatedData['tahun'],
             'keterangan' => $validatedData['keterangan'] ?? null,
         ]);
@@ -140,6 +148,6 @@ class RencanaAksiController extends Controller
     {
         $rencanaAksi = RencanaAksi::findOrFail($id);
         $rencanaAksi->delete();
-        return redirect()->route('rencanaAksi.index')->with('success', 'Rencana Aksi deleted successfully.');
+        return redirect()->route('rencanaAksi')->with('success', 'Rencana Aksi deleted successfully.');
     }
 }

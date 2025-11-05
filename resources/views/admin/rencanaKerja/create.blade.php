@@ -8,8 +8,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white">Dashboard</a></li>
-                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white">Rencana Aksi</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tambah Rencana Aksi</li>
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white">Rencana Kerja</a></li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tambah Rencana Kerja</li>
                     </ol>
 
 
@@ -31,8 +31,8 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                        <h6>Form Tambah Rencana Aksi</h6>
-                        <a href="{{ route('rencanaAksi') }}" class="btn btn-secondary btn-sm">
+                        <h6>Form Tambah Rencana Kerja</h6>
+                        <a href="{{ route('rencanakerja') }}" class="btn btn-secondary btn-sm">
                             <i class="fas fa-arrow-left"></i> Kembali
                         </a>
 
@@ -50,12 +50,12 @@
                         @endif
 
                         {{-- ✅ Form Tambah Data --}}
-                        <form action="{{ route('rencana_aksi.store') }}" method="POST">
+                        <form action="{{ route('rencana_kerja.store') }}" method="POST">
                             @csrf
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="id_strategi" class="form-label">Sub Program / Strategi</label>
+                                    <label for="id_strategi" class="form-label">Strategi</label>
                                     <select name="id_strategi" id="id_strategi" class="form-select" required>
                                         <option value="">-- Pilih Strategi --</option>
                                         @foreach ($strategis as $data)
@@ -160,7 +160,7 @@
 
                                 <div class="mt-2">
                                     <label class="form-label">Keterangan (Opsional)</label>
-                                    <textarea name="keterangan" class="form-control" rows="3" required>{{ old('keterangan') }}</textarea>
+                                    <textarea name="keterangan" class="form-control" rows="3" >{{ old('keterangan') }}</textarea>
                                 </div>
 
                             </fieldset>
@@ -171,7 +171,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-save"></i> Simpan
                                 </button>
-                                <a href="{{ route('rencanaAksi') }}" class="btn btn-secondary">
+                                <a href="{{ route('rencanakerja') }}" class="btn btn-secondary">
                                     Batal
                                 </a>
                             </div>

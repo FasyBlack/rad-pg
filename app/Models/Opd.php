@@ -19,4 +19,8 @@ class Opd extends Model
     {
         return $this->hasMany(RencanaKerja::class, 'id_opd', 'id');
     }
+     public function monev()
+    {
+        return $this->hasMany(Monev::class, 'id_monev' ,'id');
+    }
 }

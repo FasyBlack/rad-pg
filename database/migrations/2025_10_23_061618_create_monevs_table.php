@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('sumberdana');
             $table->json('dokumen_anggaran')->nullable();
             $table->json('realisasi')->nullable();
-            $table->json('volumeTarget')->nullable();
+            $table->json('volumeRealisasi')->nullable();
             $table->json('satuan_realisasi')->nullable();
             $table->string('pesan')->nullable();
             $table->string('status')->default('Belum divalidasi');

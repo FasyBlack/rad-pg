@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Monev;
 use App\Models\Opd;
 use App\Models\RencanaKerja;
 use App\Models\Strategi;
@@ -14,7 +15,8 @@ class RencanaKerjaController extends Controller
      */
     public function index()
     {
-        return view('admin.rencana_kerja.index');
+        $rencanaKerja = RencanaKerja::with(['strategi', 'opd'])->get();
+        return view('admin.rencanaKerja.index', compact('rencanaKerja'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RencanaKerjaController extends Controller
     {
         $opd = Opd::all();
         $strategis = Strategi::all();
-        return view('admin.rencana_kerja.create', compact('strategis', 'opd'));
+        return view('admin.rencanaKerja.create', compact('strategis', 'opd'));
     }
 
     /**
@@ -42,13 +44,19 @@ class RencanaKerjaController extends Controller
             'lokasi' => 'required|string',
             'volume' => 'required|string',
             'satuan' => 'required|string',
-            'anggaran' => 'required|string',
-            'sumberdana' => 'required|string',
+            'anggaran' => 'required|array',
+            'anggaran.*' => 'required|string',
+            'sumberdana' => 'required|array',
+            'sumberdana.*' => 'required|string',
             'tahun' => 'required|string',
             'keterangan' => 'nullable|string',
         ]);
 
-        RencanaKerja::create([
+        // 4. Ubah array anggaran dan sumberdana menjadi string
+        $anggaranString = implode('; ', $validatedData['anggaran']);
+        $sumberdanaString = implode('; ', $validatedData['sumberdana']);
+
+        $rencana = RencanaKerja::create([
             'id_strategi' => $validatedData['id_strategi'],
             'id_opd' => $validatedData['id_opd'],
             'rencana_aksi' => $validatedData['rencana_aksi'],
@@ -58,15 +66,27 @@ class RencanaKerjaController extends Controller
             'lokasi' => $validatedData['lokasi'],
             'volume' => $validatedData['volume'],
             'satuan' => $validatedData['satuan'],
-            'anggaran' => $validatedData['anggaran'],
-            'sumberdana' => $validatedData['sumberdana'],
+            'anggaran'      => $anggaranString,
+            'sumberdana'    => $sumberdanaString,
             'tahun' => $validatedData['tahun'],
             'keterangan' => $validatedData['keterangan'] ?? null,
         ]);
 
+         $monev = Monev::create([
+            // 'id_pengguna'   => $rencana->id_pengguna,
+            'id_strategi' => $rencana->id_strategi,
+            'id_renja'      => $rencana->id,
+            'id_opd'        => $rencana->id_opd,
+            'anggaran'      => $anggaranString,
+            'sumberdana'    => $sumberdanaString,
+            'is_locked'     => true,
+
+
+        ]);
+
         // Logic to store Rencana Kerja goes here
 
-        return redirect()->route('rencana_kerja')->with('success', 'Rencana Kerja created successfully.');
+        return redirect()->route('rencanakerja')->with('success', 'Rencana Kerja created successfully.');
     }
 
     /**
@@ -85,7 +105,9 @@ class RencanaKerjaController extends Controller
         $opd = Opd::all();
         $strategis = Strategi::all();
         $rencanaKerja = RencanaKerja::findOrFail($id);
-        return view('admin.rencana_kerja.edit', compact('rencanaKerja', 'strategis', 'opd'));
+        $rencanaKerja->anggaran = explode('; ', $rencanaKerja->anggaran);
+        $rencanaKerja->sumberdana = explode('; ', $rencanaKerja->sumberdana);
+        return view('admin.rencanaKerja.update', compact('rencanaKerja', 'strategis', 'opd'));
     }
 
     /**
@@ -103,13 +125,17 @@ class RencanaKerjaController extends Controller
             'lokasi' => 'required|string',
             'volume' => 'required|string',
             'satuan' => 'required|string',
-            'anggaran' => 'required|string',
-            'sumberdana' => 'required|string',
+            'anggaran'     => 'required|array',
+            'anggaran.*'   => 'required|string',
+            'sumberdana'   => 'required|array',
+            'sumberdana.*' => 'required|string',
             'tahun' => 'required|string',
             'keterangan' => 'nullable|string',
         ]);
 
         $rencanaKerja = RencanaKerja::findOrFail($id);
+        $anggaranString = implode('; ', $validatedData['anggaran']);
+        $sumberdanaString = implode('; ', $validatedData['sumberdana']);
         $rencanaKerja->update([
             'id_strategi' => $validatedData['id_strategi'],
             'id_opd' => $validatedData['id_opd'],
@@ -120,13 +146,13 @@ class RencanaKerjaController extends Controller
             'lokasi' => $validatedData['lokasi'],
             'volume' => $validatedData['volume'],
             'satuan' => $validatedData['satuan'],
-            'anggaran' => $validatedData['anggaran'],
-            'sumberdana' => $validatedData['sumberdana'],
+            'anggaran'      => $anggaranString,
+            'sumberdana'    => $sumberdanaString,
             'tahun' => $validatedData['tahun'],
             'keterangan' => $validatedData['keterangan'] ?? null,
         ]);
 
-        return redirect()->route('rencana_kerja')->with('success', 'Rencana Kerja updated successfully.');
+        return redirect()->route('rencanakerja')->with('success', 'Rencana Kerja updated successfully.');
     }
 
     /**
@@ -137,6 +163,6 @@ class RencanaKerjaController extends Controller
         $rencanaKerja = RencanaKerja::findOrFail($id);
         $rencanaKerja->delete();
 
-        return redirect()->route('rencana_kerja.index')->with('success', 'Rencana Kerja deleted successfully.');
+        return redirect()->route('rencanakerja')->with('success', 'Rencana Kerja deleted successfully.');
     }
 }

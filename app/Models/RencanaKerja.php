@@ -32,6 +32,11 @@ class RencanaKerja extends Model
     }
     public function opd()
     {
-        return $this->belongsTo(Opd::class, 'id_opd',' id');
+        return $this->belongsTo(Opd::class, 'id_opd','id');
+    }
+
+     public function monev()
+    {
+        return $this->hasMany(Monev::class, 'id_monev' ,'id');
     }
 }

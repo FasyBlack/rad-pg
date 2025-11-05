@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Rencana Aksi</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Rencana Kerja</li>
                     </ol>
                     {{-- <h6 class="font-weight-bolder text-white mb-0">Rencana Aksi</h6> --}}
                 </nav>
@@ -26,10 +26,10 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                        <h6>Daftar Rencana Aksi</h6>
+                        <h6>Daftar Rencana Kerja</h6>
 
                         {{-- ✅ Tombol Tambah Data --}}
-                        <a href="{{ route('rencana_aksi.create') }}" class="btn btn-primary btn-sm">
+                        <a href="{{ route('rencana_kerja.create') }}" class="btn btn-primary btn-sm">
                             <i class="fas fa-plus"></i> Tambah Data
                         </a>
                     </div>
@@ -52,12 +52,13 @@
                                         <th>Perangkat Daerah</th>
                                         <th>Anggaran</th>
                                         <th>Sumber Dana</th>
+                                        <th>Status</th>
                                         <th>Keterangan</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($rencanaAksi as $index => $item)
+                                    @forelse ($rencanaKerja as $index => $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ $item->strategi->strategi ?? '-' }}</td>
@@ -94,17 +95,25 @@
                                             @else
                                                 <td class="align-middle">{{ $item->sumberdana ?: '-' }}</td>
                                             @endif
+
+                                            <td class="text-center">
+                                                @if ($item->status === 'Valid')
+                                                    <span class="badge bg-success">{{ $item->status }}</span>
+                                                @else
+                                                    <span class="badge bg-secondary">{{ $item->status }}</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $item->keterangan ?? '-' }}</td>
                                             <td>
 
-                                                 <form action="{{ route('rencana_aksi.edit', $item->id) }}"
-                                                                    method="GET" style="display:inline;">
-                                                                    <button class="btn btn-sm btn-warning">
-                                                                        Edit
-                                                                    </button>
-                                                                </form>
+                                                <form action="{{ route('rencana_kerja.edit', $item->id) }}" method="GET"
+                                                    style="display:inline;">
+                                                    <button class="btn btn-sm btn-warning">
+                                                        Edit
+                                                    </button>
+                                                </form>
                                                 <form id="formDelete-{{ $item->id }}"
-                                                    action="{{ route('rencana_aksi.destroy', $item->id) }}" method="POST"
+                                                    action="{{ route('rencana_kerja.destroy', $item->id) }}" method="POST"
                                                     class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
